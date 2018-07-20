@@ -17,13 +17,10 @@ describe(Store) do
     end
   end
 
-  # describe('#amounts') do
-  #   it('') do
-  #     recipe = Recipe.create({:title => 'grasshopper grains'})
-  #     ingredient = recipe.ingredients.create({:ingredient_name => 'wheat'})
-  #     amount = Amount.all.last
-  #     amount.update(amount: '2 cups')
-  #     expect(recipe.amounts[0].amount).to include('2 cups')
-  #   end
-  # end
+  describe('#title') do
+    it('will upcase the first letter of title') do
+      store1 = Store.create({:title => "frog"})
+      expect(Store.all.first.title).to(eq("Frog"))
+    end
+  end
 end
