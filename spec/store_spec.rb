@@ -5,7 +5,7 @@ describe(Store) do
     it('will validate title is not blank on new store create') do
       store1 = Store.create({:title => "Shoes"})
       store2 = Store.create({:title => ""})
-      expect(Store.all).to(eq([store2]))
+      expect(Store.all).to(eq([store1]))
     end
   end
   #
