@@ -1,13 +1,13 @@
 <h1>Shoe Stores</h1>
 <p>&nbsp;</p>
-<h3>Create Store Name:</h3>
+<h3>Create a new Store:</h3>
 
 <form action="/store" method="post">
   <input type="text" name="title" value="" placeholder="enter a name">
   <button type="submit" class="btn btn-info" name="button">create!</button>
 </form>
 <p>&nbsp;</p>
-<h3>View a Store</h3>
+<h3>Current list of Stores</h3>
 <p>&nbsp;</p>
 <%if @stores_list != []%>
 <div class="container">
