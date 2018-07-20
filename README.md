@@ -12,9 +12,9 @@
 
 1. Clone the repo
 1. build out the database outlined in my_database.sql with the following commands:
-1. createdb [DATABASE NAME]
-1. psql [DATABASE_NAME] < database_backup.sql
-1. createdb -T [DATABASE NAME] [TEST DATABASE NAME]
+1. createdb shoe_store_dev
+1. psql shoe_store_dev < database_backup.sql
+1. createdb -T shoe_store_dev shoe_store_test
 1. delete Gemfile.lock and re-run Bundle, fix any errors
 1. from the root of the repo> ruby app.rb
 
