@@ -8,16 +8,15 @@ describe(Store) do
       expect(Store.all).to(eq([store1]))
     end
   end
-  #
-  # describe('#tag') do
-  #   it('a recipe can have many tags') do
-  #     recipe = Recipe.create({:title => "pie"})
-  #     tag1 = recipe.tags.create({:tag_name => "sweet"})
-  #     tag2 = recipe.tags.create({:tag_name => "crusty"})
-  #     expect(recipe.tags).to(eq([tag1, tag2]))
-  #   end
-  # end
-  #
+
+  describe('#title') do
+    it('a store can only have a length of 100 char title') do
+      store1 = Store.create({:title => "Shoes"})
+      store2 = Store.create({:title => "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"})
+      expect(Store.all).to(eq([store1]))
+    end
+  end
+
   # describe('#amounts') do
   #   it('') do
   #     recipe = Recipe.create({:title => 'grasshopper grains'})
