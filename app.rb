@@ -22,18 +22,16 @@ end
 get('/stores/:id/edit') do
   @store = Store.find(params[:id].to_i)
   @all_brands = Brand.all
-  @brands_list = @store.brands.find_by(store_id: @store.id)
   erb(:edit)
 end
-
 
 post('/stores/:id/brand') do
   @store = Store.find(params[:id].to_i)
   @brand_id = params["brands_drop"]
-  @add_brand = @store.brands.find_or_create_by({:id => @brand_id})
+  @brand = Brand.find(@brand_id)
+  @add_brand = @brand.stores.find_or_create_by(:id => @store.id)
   @all_brands = Brand.all
-  @brands_list = Brand.find_by(@store.id)
-  binding.pry
+  # @brands_list = @store.brands.find_by(:id => @store.id)
   erb(:edit)
 end
 
@@ -41,8 +39,10 @@ post('/stores/:id/brand/new') do
   @store = Store.find(params[:id].to_i)
   @brand_name = params["new_brand"]
   @brand_price = params["new_price"]
-  @associate_brand = @store.brands.find_or_create_by({:name => @brand_name})
+  @associate_brand = @store.brands.find_or_create_by(:name => @brand_name)
   @associate_brand.update(price: @brand_price)
+  @all_brands = Brand.all
+  # @brands_list = @store.brands.find_by(:id => @store.id)
   erb(:edit)
 end
 

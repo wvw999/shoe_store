@@ -21,17 +21,17 @@
   </select>
   <button type="submit" id="update" class="btn btn-warning">add</button>
 </form>
-<p> </p>
 
-<% if @brands_list == nil %>
+<p> </p>
+<% if @store.brands == [] %>
   <h3>There are no brands associated with this store</h3>
 <% else %>
-  <h3>Brands:</h3>
-    <% @brands_list.each do |element| %>
-      <h3><%= element.price %> &nbsp; <%= element.name %></h3>
-    <% end %>
+  <% @store.brands.each do |included|%>
+    <h3> <%= included.name %> &nbsp; $<%= included.price %></h3>
+  <% end %>
 <% end %>
 
+<p>&nbsp;</p>
 <form class="form-inline" action="/" method="get">
   <button type="submit" class="btn btn-primary">Back</button>
 </form>
