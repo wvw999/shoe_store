@@ -10,17 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_20_152711) do
+ActiveRecord::Schema.define(version: 2018_07_20_162843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "brand_store", id: false, force: :cascade do |t|
-    t.bigint "brand_id"
-    t.bigint "store_id"
-    t.index ["brand_id"], name: "index_brand_store_on_brand_id"
-    t.index ["store_id"], name: "index_brand_store_on_store_id"
-  end
 
   create_table "brands", force: :cascade do |t|
     t.integer "store_id"
@@ -28,6 +21,13 @@ ActiveRecord::Schema.define(version: 2018_07_20_152711) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "brands_stores", id: false, force: :cascade do |t|
+    t.bigint "brand_id"
+    t.bigint "store_id"
+    t.index ["brand_id"], name: "index_brands_stores_on_brand_id"
+    t.index ["store_id"], name: "index_brands_stores_on_store_id"
   end
 
   create_table "stores", force: :cascade do |t|

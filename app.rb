@@ -16,7 +16,7 @@ post('/store') do
   @store_name = params["title"]
   @brands_list = Brand.all
   @new_store = Store.create({:title => @store_name})
-  erb(:store)
+  redirect '/'
 end
 
 # get('/stores/:id/edit') do
