@@ -1,0 +1,35 @@
+<h1>Shoe Store Locator!</h1>
+<p>&nbsp;</p>
+<h3>New Store Name</h3>
+
+<form action="/store" method="post">
+  <input type="text" name="title" value="" placeholder="enter a name">
+  <button type="submit" name="button">create!</button>
+</form>
+<p>&nbsp;</p>
+<h3>View a Store</h3>
+<p>&nbsp;</p>
+<%if @stores_list != []%>
+<div class="container">
+  <%@stores_list.each do |store|%>
+  <div class="row">
+    <div class="col-md-3">
+      <a href="/stores/<%= store.id %>/display"><%= store.title %></a>
+    </div>
+    <div class="col-md-1">
+      <form class="form-inline" action="/stores/<%= store.id %>/edit" method="get">
+        <button type="submit" class="btn btn-warning">Edit</button>
+      </form>
+    </div>
+    <div class="col-md-1">
+      <form class="form-inline" action="/stores/<%= store.id %>/remove" method="post">
+        <input name="_method" type="hidden" value="delete">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+  <% end %>
+</div>
+<% else %>
+  <p>There are no stores yet!</p>
+<% end %>
