@@ -25,6 +25,36 @@ get('/stores/:id/edit') do
   erb(:edit)
 end
 
+get('/brands') do
+  @all_brands = Brand.all
+  erb(:brand)
+end
+
+post('/brands/rename') do
+  rename_brand = params["updated_name"]
+  rename_id = params["to_update_id"]
+  rename_do = Brand.find(rename_id)
+  rename_do.update(name: rename_brand)
+  @all_brands = Brand.all
+  erb(:brand)
+end
+
+post('/brands/reprice') do
+  reprice_price = params["updated_price"].to_i
+  reprice_id = params["to_update_id"]
+  reprice_do = Brand.find(reprice_id)
+  reprice_do.update(price: reprice_price)
+  @all_brands = Brand.all
+  erb(:brand)
+end
+
+post('/brands/delete') do
+  @delete_brand = params["brands_drop"]
+  Brand.destroy(@delete_brand)
+  @all_brands = Brand.all
+  erb(:brand)
+end
+
 post('/stores/:id/title') do
   @store = Store.find(params[:id].to_i)
   @updated_title = params["updated_title"]
