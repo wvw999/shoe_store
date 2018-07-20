@@ -15,7 +15,7 @@
       <option value="" disabled selected>no brands yet</option>
     <% else %>
       <% @all_brands.each do |brand| %>
-        <option value = "<%= brand.id %>" > <%= brand.name %> </option>
+        <option value = "<%= brand.name %>" > <%= brand.name %> </option>
       <% end %>
     <% end %>
   </select>

@@ -4,7 +4,7 @@
 
 <form action="/store" method="post">
   <input type="text" name="title" value="" placeholder="enter a name">
-  <button type="submit" name="button">create!</button>
+  <button type="submit" class="btn btn-info" name="button">create!</button>
 </form>
 <p>&nbsp;</p>
 <h3>View a Store</h3>
@@ -14,7 +14,7 @@
   <%@stores_list.each do |store|%>
   <div class="row">
     <div class="col-md-3">
-      <a href="/stores/<%= store.id %>/display"><%= store.title %></a>
+      <h3><%= store.title %></h3>
     </div>
     <div class="col-md-1">
       <form class="form-inline" action="/stores/<%= store.id %>/edit" method="get">
@@ -23,7 +23,6 @@
     </div>
     <div class="col-md-1">
       <form class="form-inline" action="/stores/<%= store.id %>/remove" method="post">
-        <input name="_method" type="hidden" value="delete">
         <button type="submit" class="btn btn-danger">Delete</button>
       </form>
     </div>

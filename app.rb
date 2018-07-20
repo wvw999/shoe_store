@@ -27,9 +27,9 @@ end
 
 post('/stores/:id/brand') do
   @store = Store.find(params[:id].to_i)
-  @brand_id = params["brands_drop"]
-  @brand = Brand.find(@brand_id)
-  @add_brand = @brand.stores.find_or_create_by(:id => @store.id)
+  @brand_name = params["brands_drop"]
+  @brand = Brand.find_by(name: @brand_name)
+  @store.brands << Brand.find_or_create_by(:name => @brand_name)
   @all_brands = Brand.all
   # @brands_list = @store.brands.find_by(:id => @store.id)
   erb(:edit)
@@ -39,17 +39,14 @@ post('/stores/:id/brand/new') do
   @store = Store.find(params[:id].to_i)
   @brand_name = params["new_brand"]
   @brand_price = params["new_price"]
-  @associate_brand = @store.brands.find_or_create_by(:name => @brand_name)
-  @associate_brand.update(price: @brand_price)
+  @add_brand = @store.brands.find_or_create_by(:name => @brand_name, :price => @brand_price)
   @all_brands = Brand.all
   # @brands_list = @store.brands.find_by(:id => @store.id)
   erb(:edit)
 end
 
-# get('/stores/:id/display') do
-#@store = Store.find(params[:id].to_i)
-# end
-#
-# destroy('/stores/:id/remove') do
-#@store = Store.find(params[:id].to_i)
-# end
+post('/stores/:id/remove') do
+  @store = Store.find(params[:id].to_i)
+  Store.destroy(@store.id)
+  redirect '/'
+end
